@@ -1,0 +1,21 @@
+<!-- src/app/header/header.component.html -->
+<ion-header>
+  <ion-toolbar>
+
+    <ion-grid>
+      <ion-row>
+        <!-- <ion-col>
+          <ion-title>
+            SINC
+          </ion-title>
+        </ion-col> -->
+        <ion-col class="col_header_icons">
+          <span (click)="goProducts()" class="pointer">Products</span> <ion-icon name="gift" (click)="goProducts()" size="large" class="icon_cart"></ion-icon>
+          <!-- <span (click)="goCart()" class="pointer">Cart</span> <ion-icon name="cart" (click)="goCart()" size="large" class="icon_cart"></ion-icon> -->
+          <span (click)="logout()" class="pointer">Logout</span> <ion-icon name="log-out" (click)="logout()" size="large" class="icon_logout"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+  </ion-toolbar>
+</ion-header>

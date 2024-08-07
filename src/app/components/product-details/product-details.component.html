@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Product Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-icon name="close" size="large" (click)="dismiss()"></ion-icon>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <p><strong>{{ product.category | uppercase }}</strong></p>
+      <ion-card-title>{{ product.title }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Price:</strong> ${{ product.price }}</p>
+      <p><strong>Rating:</strong> {{ product.rating.rate }} / 5 ({{ product.rating.count }} reviews)</p>
+      <p class="padding_bottom_10"><strong>Description:</strong> {{ product.description }}</p>
+      <ion-img [src]="product.image"></ion-img>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

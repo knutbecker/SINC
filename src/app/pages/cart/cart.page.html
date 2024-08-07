@@ -1,0 +1,31 @@
+<!-- src/app/pages/cart/cart.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <p>Warenkorb</p>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems">
+      <ion-thumbnail slot="start">
+        <img [src]="item.image" alt="{{ item.title }}">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.title }}</h2>
+        <p>${{ item.price }}</p>
+      </ion-label>
+      <ion-input label="Quantity" fill="outline" type="number" class="input_quantity" [(ngModel)]="item.quantity" (ngModelChange)="updateQuantity(item.id, $event)"></ion-input>
+      <ion-button (click)="removeFromCart(item.id)" color="danger">Remove</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

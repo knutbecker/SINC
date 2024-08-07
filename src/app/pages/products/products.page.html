@@ -1,0 +1,96 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- <ion-content [fullscreen]="true"> -->
+<ion-content class="ion-padding">
+  <!-- <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Products</ion-title>
+    </ion-toolbar>
+  </ion-header> -->
+
+  <ion-grid>
+    <ion-row>
+
+      <!-- Grid for Products -->
+      <ion-col size-xl="8" size-lg="8" size-md="12" size-sm="12" size-xs="12" class="grid_products">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p>Products</p>
+            </ion-col>
+            <ion-col class="col_filter">
+              <ion-item class="filter_products_item">
+                <ion-label>Filter</ion-label>
+                <ion-select interface="popover" (ionChange)="onCategoryChange($event)">
+                  <ion-select-option value="">ALL CATEGORIES</ion-select-option>
+                  <ion-select-option *ngFor="let category of categories" [value]="category">
+                    {{ category | uppercase }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-list>
+          <ion-item *ngFor="let product of products">
+            <ion-thumbnail slot="start">
+              <img [src]="product.image" alt="{{ product.title }}">
+            </ion-thumbnail>
+            <ion-label>
+              <h2>{{ product.title }}</h2>
+              <p>${{ product.price | number:'1.2-2' }}</p>
+              <p class="desktop-only">{{ product.description }}</p>
+            </ion-label>
+            <ion-button (click)="addToCart(product)" color="success">Buy</ion-button><br>
+            <ion-button (click)="showDetails(product)">Details</ion-button>            
+          </ion-item>
+        </ion-list> 
+
+      </ion-col>
+      <!-- Grid for Products -->
+
+      <!-- Grid for Cart -->
+      <ion-col size-xl="4" size-lg="4" size-md="12" size-sm="12" size-xs="12" class="cart-column">
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <p>Cart</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+
+        <ion-card class="card_cart">
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let item of cartItems">
+                <ion-label>
+                  <h3>{{ item.title }}</h3>
+                  <p>${{ item.price | number:'1.2-2' }} x {{ item.quantity }}</p>
+                </ion-label>
+                <ion-input label="Quantity" fill="outline" type="number" class="input_quantity" [(ngModel)]="item.quantity" (ngModelChange)="updateQuantity(item.id, $event)"></ion-input>
+                <ion-button (click)="removeFromCart(item.id)" color="danger">Remove</ion-button>
+              </ion-item>
+            </ion-list>
+            <ion-item *ngIf="cartItems.length === 0">
+              <ion-label>No items in the cart</ion-label>
+            </ion-item>
+            <ion-item *ngIf="cartItems.length > 0">
+              <ion-label>
+                <h2>Total: ${{ getTotalPrice() | number:'1.2-2' }}</h2>
+              </ion-label>
+            </ion-item>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <!-- end Grid for Cart -->
+    
+    </ion-row>
+  </ion-grid>
+
+</ion-content>
