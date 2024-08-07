@@ -8,6 +8,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class ProductDetailsComponent {
   @Input() product: any;
+  @Input() addToCart!: (product: any) => void;
 
   constructor(private modalController: ModalController) {}
 
