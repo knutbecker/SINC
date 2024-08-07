@@ -16,8 +16,6 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 
 import { AppRoutingModule } from './app-routing.module';
 
-
-
 @NgModule({
   declarations: [AppComponent, 
                 HeaderComponent,

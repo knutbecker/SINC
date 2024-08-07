@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductService } from 'src/app/services/products.service';
 import { CartService } from 'src/app/services/cart.service';
 import { ModalController } from '@ionic/angular';
 import { ProductDetailsComponent } from '../../components/product-details/product-details.component';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-products',
@@ -20,10 +22,15 @@ export class ProductsPage implements OnInit {
   constructor( private productService: ProductService, 
                private cartService: CartService,
                private modalController: ModalController,
-               private alertController: AlertController
+               private alertController: AlertController,
+               private authService: AuthService,
+               private router: Router
   ) { }
 
   ngOnInit() {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
     this.loadCategories();
     this.loadProducts();
     this.loadCartItems();
